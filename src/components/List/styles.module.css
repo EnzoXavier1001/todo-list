@@ -1,0 +1,14 @@
+.main {
+  max-width: 73.6rem;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  margin-top: -2.7rem;
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+}

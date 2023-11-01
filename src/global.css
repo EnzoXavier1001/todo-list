@@ -1,0 +1,43 @@
+:root {
+  --blue-300: #1e6f9f;
+  --blue-600: #4ea8de;
+
+  --purple-300: #5e60ce;
+  --purple-600: #8284fa;
+
+  --body-color: #1e1e1e;
+
+  --gray-100: #f2f2f2;
+  --gray-200: #d9d9d9;
+  --gray-300: #808080;
+  --gray-400: #333333;
+  --gray-500: #262626;
+  --gray-600: #1a1a1a;
+  --gray-700: #0d0d0d;
+
+  --red-600: #e25858;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  background: var(--body-color);
+}

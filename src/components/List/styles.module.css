@@ -115,6 +115,14 @@
     width: 90%;
     margin: 0 auto;
   }
+
+  .emptyList {
+    text-align: center;
+  }
+
+  .emptyListTitle {
+    margin-bottom: 0.8rem;
+  }
 }
 
 @media (max-width: 450px) {

@@ -50,11 +50,20 @@
   border: 2px solid var(--blue-600);
   border-radius: 100%;
   cursor: pointer;
+  transition: background, border 0.3s ease-in-out;
+}
+
+.checkBoxWrapper label:hover {
+  border: 2px solid var(--blue-300);
 }
 
 .checkBoxWrapper label.hasDone {
   background: var(--purple-300);
   border: 0;
+}
+
+.checkBoxWrapper label.hasDone:hover {
+  background: var(--purple-600);
 }
 
 .checkBoxWrapper label.hasDone::after {

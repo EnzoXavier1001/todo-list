@@ -47,15 +47,17 @@ export function List() {
   }
 
   function handleCreateTask() {
-    const newTask = {
-      id: uuidv4(),
-      text: inputTask,
-      done: false,
-    };
-    const newTaskList = [...task, newTask];
+    if (inputTask !== "") {
+      const newTask = {
+        id: uuidv4(),
+        text: inputTask.trim(),
+        done: false,
+      };
+      const newTaskList = [...task, newTask];
 
-    setTask(newTaskList);
-    setInputTask("");
+      setTask(newTaskList);
+      setInputTask("");
+    }
   }
 
   function handleRemoveTask(id: string) {
@@ -77,7 +79,10 @@ export function List() {
     <main className={style.main}>
       <header className={style.header}>
         <Input value={inputTask} onChange={(e) => handleNewTask(e)} />
-        <Button onClick={handleCreateTask} />
+        <Button
+          onClick={handleCreateTask}
+          disabled={inputTask.length === 0 ? true : false}
+        />
       </header>
 
       <div className={style.containerList}>

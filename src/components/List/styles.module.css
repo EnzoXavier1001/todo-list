@@ -64,8 +64,9 @@
 
 .stepBarStatus {
   width: 100%;
+  transition: width 0.6s;
   height: 2px;
-  background: var(--red-600);
+  background: var(--green-600);
 }
 
 .emptyList {

@@ -80,7 +80,29 @@
   margin: 6.4rem 0 1.6rem;
 }
 
-.emptyListTitle {
+.deleteAllTasks {
+  outline: 0;
+  border: none;
+  color: var(--gray-100);
+  padding: 1.6rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  background: var(--red-600);
+  width: 100%;
+
+  margin-top: 3.2rem;
+
+  transition: filter 0.2s;
+}
+
+.deleteAllTasks:hover {
+  filter: brightness(0.7);
 }
 
 @media (max-width: 768px) {

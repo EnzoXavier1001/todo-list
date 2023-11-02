@@ -8,12 +8,12 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { useState } from "react";
 import { ListItem } from "../ListItem";
-import { ClipboardText } from "@phosphor-icons/react";
+import { ClipboardText, Trash } from "@phosphor-icons/react";
 
 export function List() {
   const [task, setTask] = useState<Task[]>([]);
 
-  const [inputTask, setInputTask] = useState("");
+  const [inputTask, setInputTask] = useState<string>("");
 
   function getDataStored() {
     const dataStoraged = JSON.parse(localStorage.getItem("tasks")!);
@@ -69,6 +69,10 @@ export function List() {
     return teste.done === true;
   });
 
+  function handleDeleteAllTasks() {
+    setTask([]);
+  }
+
   return (
     <main className={style.main}>
       <header className={style.header}>
@@ -114,6 +118,13 @@ export function List() {
                 />
               ))}
             </div>
+
+            <button
+              className={style.deleteAllTasks}
+              onClick={handleDeleteAllTasks}
+            >
+              Apagar todas as tarefas <Trash size={24} />
+            </button>
           </>
         ) : (
           <div className={style.emptyList}>

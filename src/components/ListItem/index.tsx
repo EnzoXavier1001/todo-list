@@ -16,7 +16,19 @@ export function ListItem({
 }: ListItemProps) {
   return (
     <div className={style.listItem}>
-      <input type="checkbox" checked={done} onChange={() => onChecked(id)} />
+      <div className={style.checkBoxWrapper}>
+        <input
+          id={`checkboxHasDone-${id}`}
+          type="checkbox"
+          checked={done}
+          onChange={() => onChecked(id)}
+        />
+
+        <label
+          htmlFor={`checkboxHasDone-${id}`}
+          className={done ? style.hasDone : ""}
+        ></label>
+      </div>
       <p className={`${style.listItemText} ${done ? style.hasDone : ""}`}>
         {text}
       </p>

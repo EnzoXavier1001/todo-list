@@ -18,9 +18,7 @@ export function List() {
   function getDataStored() {
     const dataStoraged = JSON.parse(localStorage.getItem("tasks")!);
 
-    if (dataStoraged.length > 0) {
-      setTask(dataStoraged);
-    }
+    setTask(dataStoraged);
   }
 
   useEffect(() => {

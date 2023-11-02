@@ -58,8 +58,8 @@ para tipagem de códigos JavaScript.
 ### Mobile
 
 <p align="left">       
-  <img src="./src/assets/img/preview-screenshot-mobile" width="35%">
-  <img src="./src/assets/img/preview-screenshot-mobile-2" width="35%">
+  <img src="./src/assets/img/preview-screenshot-mobile.png" width="35%">
+  <img src="./src/assets/img/preview-screenshot-mobile-2.png" width="35%">
 </p>
 
 ## 🔨 Tecnologias utilizadas

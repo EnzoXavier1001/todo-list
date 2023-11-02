@@ -16,7 +16,7 @@ export function ListItem({
 }: ListItemProps) {
   return (
     <div className={style.listItem}>
-      <input type="checkbox" onClick={() => onChecked(id)} />
+      <input type="checkbox" checked={done} onChange={() => onChecked(id)} />
       <p className={`${style.listItemText} ${done ? style.hasDone : ""}`}>
         {text}
       </p>

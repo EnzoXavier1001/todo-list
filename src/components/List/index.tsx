@@ -1,5 +1,5 @@
 import style from "./styles.module.css";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Task } from "../../data/Task";
@@ -8,22 +8,28 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { useState } from "react";
 import { ListItem } from "../ListItem";
+import { ClipboardText } from "@phosphor-icons/react";
 
 export function List() {
-  const [task, setTask] = useState<Task[]>([
-    {
-      id: uuidv4(),
-      text: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-      done: false,
-    },
-    {
-      id: uuidv4(),
-      text: "Integer urna interdum massa libero ",
-      done: false,
-    },
-  ]);
+  const [task, setTask] = useState<Task[]>([]);
 
   const [inputTask, setInputTask] = useState("");
+
+  function getDataStored() {
+    const dataStoraged = JSON.parse(localStorage.getItem("tasks")!);
+
+    if (dataStoraged.length > 0) {
+      setTask(dataStoraged);
+    }
+  }
+
+  useEffect(() => {
+    getDataStored();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(task));
+  }, [task]);
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
     setInputTask(event.target.value);
@@ -46,8 +52,9 @@ export function List() {
       text: inputTask,
       done: false,
     };
+    const newTaskList = [...task, newTask];
 
-    setTask([...task, newTask]);
+    setTask(newTaskList);
     setInputTask("");
   }
 
@@ -55,9 +62,12 @@ export function List() {
     const newList = task.filter((taskItem) => {
       return taskItem.id !== id;
     });
-
     setTask(newList);
   }
+
+  const taskLengthHasDone = task.filter((teste) => {
+    return teste.done === true;
+  });
 
   return (
     <main className={style.main}>
@@ -75,27 +85,53 @@ export function List() {
           <div className={style.headerContent}>
             <h3 className={style.titleHeaderContent}>Concluídas</h3>
             <span className={style.counterHeaderContent}>
-              {
-                task.filter((teste) => {
-                  return teste.done === true;
-                }).length
-              }{" "}
-              de {task.length}
+              {taskLengthHasDone.length > 0
+                ? `${taskLengthHasDone.length} de ${task.length}`
+                : 0}
             </span>
           </div>
         </header>
-        <div className={style.list}>
-          {task.map((taskItem) => (
-            <ListItem
-              key={taskItem.id}
-              id={taskItem.id}
-              done={taskItem.done}
-              text={taskItem.text}
-              onRemoveTask={handleRemoveTask}
-              onChecked={handleCheckTask}
+
+        {task.length > 0 ? (
+          <>
+            <div className={style.stepBar}>
+              <div
+                style={{
+                  width: `${(taskLengthHasDone.length / task.length) * 100}%`,
+                }}
+                className={style.stepBarStatus}
+              ></div>
+            </div>
+            <div className={style.list}>
+              {task.map((taskItem) => (
+                <ListItem
+                  key={taskItem.id}
+                  id={taskItem.id}
+                  done={taskItem.done}
+                  text={taskItem.text}
+                  onRemoveTask={handleRemoveTask}
+                  onChecked={handleCheckTask}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className={style.emptyList}>
+            <div className={style.divider}></div>
+            <ClipboardText
+              className={style.emptyListIcon}
+              size={62}
+              color="#808080"
             />
-          ))}
-        </div>
+
+            <h3 className={style.emptyListTitle}>
+              Você ainda não tem tarefas cadastradas
+            </h3>
+            <p className={style.emptyListDescription}>
+              Crie tarefas e organize seus itens a fazer
+            </p>
+          </div>
+        )}
       </div>
     </main>
   );

@@ -1,0 +1,35 @@
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: var(--gray-500);
+  padding: 1.6rem;
+
+  border-radius: 8px;
+}
+
+.listItemText {
+  color: var(--gray-100);
+  line-height: 140%;
+  padding: 0 12px;
+}
+
+.listItemText.hasDone {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
+.trashButton {
+  outline: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem 0.6rem;
+
+  transition: fill 0.2s;
+}
+
+.trashButton:hover .trashButtonIcon {
+  fill: var(--red-600);
+}
